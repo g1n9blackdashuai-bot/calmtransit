@@ -1,0 +1,6 @@
+{
+  "name": "宁行 CalmTransit",
+  "description": "一个专为手机横屏设计的移动端沉浸式禅意交互原型。宁行 (CalmTransit) 引导用户在通勤中寻找平静，通过莲花与涟漪的动态变化反馈修行状态。",
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": ["Mobile Landscape UI", "Sensor Integration", "Zen Aesthetics"]
+}

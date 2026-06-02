@@ -1,0 +1,182 @@
+@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@200;300;400;500;600;700;800;900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Noto Serif SC", serif;
+  --font-serif: "Noto Serif SC", serif;
+  --font-cursive: "Noto Serif SC", serif;
+  --font-mono: "Noto Serif SC", serif;
+  
+  /* 6:3:1 Zen Palette */
+  --color-zen-linen: #F2EFE9;    /* 60% Main bg */
+  --color-zen-beige: #E5E0D8;    /* 30% Secondary */
+  --color-zen-brown: #8C7A66;    /* Secondary accent */
+  --color-zen-dark: #2C2C2C;     /* 10% Contrast/Text */
+  --color-zen-accent: #8C7A66;
+}
+
+/* ==========================================
+   Language-Specific Typography Adaptive Rules
+   ========================================== */
+
+/* --- Chinese Typography Specifics --- */
+.lang-zh {
+  font-family: "Noto Serif SC", serif;
+}
+.lang-zh,
+.lang-zh * {
+  /* Retain elegant open breathability for Chinese characters */
+}
+
+/* --- English Typography Specifics --- */
+.lang-en:not(.logo-font) {
+  font-family: "Atkinson Hyperlegible", "Inter", system-ui, -apple-system, sans-serif !important;
+}
+
+/* Force Atkinson Hyperlegible/Inter across all structural and typography elements under the lang-en class, EXCEPT logo-font and elements inside logo-font */
+.lang-en *:not(.logo-font):not(.logo-font *) {
+  font-family: "Atkinson Hyperlegible", "Inter", system-ui, -apple-system, sans-serif !important;
+  letter-spacing: 0.015em !important; /* Extremely tight and compact tracking conform to mainstream a11y standards */
+  word-spacing: 0.04em !important;   /* Dynamic clear boundaries between words */
+}
+
+/* Specific override for elements carrying any tracking- classes from Tailwind, ensuring English stays tight, EXCEPT logo-font */
+.lang-en [class*="tracking-"]:not(.logo-font):not(.logo-font *) {
+  letter-spacing: 0.015em !important;
+}
+
+/* Ensure paragraph fields wrap naturally with suitable visual lines, EXCEPT logo-font */
+.lang-en p:not(.logo-font):not(.logo-font *) {
+  line-height: 1.6 !important;
+  text-align: center !important;
+}
+
+.logo-font,
+.logo-font * {
+  font-family: "Noto Serif SC", serif !important;
+}
+
+/* If block needs justification for elegant layout margins */
+.lang-en .text-justify {
+  text-align: justify !important;
+  text-justify: inter-word;
+}
+
+/* Allow micro uppercase badges to have a slightly relaxed layout but still completely tight relative to default wide spacing */
+.lang-en .uppercase-label,
+.lang-en .micro-badge {
+  letter-spacing: 0.03em !important;
+  word-spacing: 0.05em !important;
+}
+
+@layer base {
+  html, body, #root {
+    @apply h-full w-full overflow-hidden;
+  }
+  body {
+    @apply bg-zen-linen text-zen-dark font-serif selection:bg-zen-beige;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+.zen-texture {
+  position: relative;
+}
+.zen-texture::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url('https://www.transparenttextures.com/patterns/natural-paper.png');
+  z-index: 100;
+}
+
+.vertical-rl {
+  writing-mode: vertical-rl;
+}
+
+.landscape-only {
+  display: none;
+}
+
+@media (orientation: portrait) {
+  .portrait-overlay {
+    display: flex;
+  }
+  .game-content {
+    display: none;
+  }
+}
+
+@media (orientation: landscape) {
+  .portrait-overlay {
+    display: none;
+  }
+  .game-content {
+    display: block;
+  }
+}
+
+/* Custom Scroll/Drag hiding */
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* Water Ripple Animation */
+@keyframes zen-ripple {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.3);
+    opacity: 0;
+  }
+}
+
+.ripple-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.ripple {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 140vmax;
+  height: 140vmax;
+  border-radius: 50%;
+  border: 1.5px solid rgba(115, 96, 75, 0.5);
+  opacity: 0;
+  animation: zen-ripple 12s ease-out infinite;
+}
+
+.ripple:nth-child(2) {
+  animation-delay: 2s;
+}
+
+.ripple:nth-child(3) {
+  animation-delay: 4s;
+}
+
+.ripple:nth-child(4) {
+  animation-delay: 6s;
+}
+
+.ripple:nth-child(5) {
+  animation-delay: 8s;
+}
+
+.ripple:nth-child(6) {
+  animation-delay: 10s;
+}
