@@ -58,18 +58,18 @@ export const StatsBar: React.FC<StatsBarProps> = ({
   };
 
   return (
-    <div className="flex flex-col md:flex-row items-center gap-6 md:gap-7 lg:gap-10 px-5 md:px-8 py-3.5 md:py-4.5 bg-[#F2EAE3]/95 backdrop-blur-md border border-[#BFB4A6]/35 rounded-[36px] font-serif mx-auto select-none max-w-full z-40">
+    <div className="stats-bar-wrapper flex flex-col landscape:flex-row md:flex-row items-center gap-2.5 landscape:gap-3 md:gap-5 lg:gap-8 px-4 landscape:px-5 md:px-7 py-1.5 landscape:py-1.5 md:py-2.5 bg-[#F2EAE3]/95 backdrop-blur-md border border-[#BFB4A6]/35 rounded-[20px] landscape:rounded-[28px] md:rounded-[28px] font-serif mx-auto select-none max-w-full z-40">
       
       {/* 1. 噪音程度 (Mapped 70 to 110) */}
-      <div className="flex items-center gap-2 md:gap-4 relative group h-12 w-36 md:w-40 lg:w-44 xl:w-48 pointer-events-auto">
-        <div className="w-10 h-10 rounded-full bg-[#E5DDD2]/70 flex items-center justify-center text-[#5A5043] flex-shrink-0 transition-colors group-hover:bg-[#DACFBE]">
-          <Volume2 size={16} />
+      <div className="flex items-center gap-1.5 md:gap-2.5 relative group h-8.5 landscape:h-8.5 md:h-10 w-32 landscape:w-36 md:w-38 lg:w-42 xl:w-46 pointer-events-auto">
+        <div className="w-7 h-7 landscape:w-8.5 landscape:h-8.5 md:w-8.5 md:h-8.5 rounded-full bg-[#E5DDD2]/70 flex items-center justify-center text-[#5A5043] flex-shrink-0 transition-colors group-hover:bg-[#DACFBE]">
+          <Volume2 size={13} />
         </div>
          
         <div className="flex-1 flex flex-col justify-center relative min-w-0">
-          <div className="flex justify-between items-baseline mb-1.5 text-xs text-[#5A5043]">
-            <span className="opacity-85 font-serif font-medium tracking-[0.08em]">{isZh ? '噪音程度' : 'Noise Level'}</span>
-            <span className="font-serif font-semibold tracking-[0.04em] text-xs text-[#BF4F73]">{getNoiseLabel()}</span>
+          <div className="flex justify-between items-baseline mb-0.5 text-[10px] md:text-xs text-[#5A5043]">
+            <span className="opacity-85 font-serif font-medium tracking-[0.08em] truncate">{isZh ? '噪音' : 'Noise'}</span>
+            <span className="font-serif font-semibold tracking-[0.04em] text-[10px] md:text-xs text-[#BF4F73]">{noise} dB</span>
           </div>
           
           <div className="w-full h-[2px] bg-[#E2D6C6] rounded-full relative overflow-hidden">
@@ -92,20 +92,20 @@ export const StatsBar: React.FC<StatsBarProps> = ({
       </div>
 
       {/* Divider */}
-      <div className="hidden md:block w-[1px] h-6 bg-[#DFD8CE]" />
+      <div className="hidden landscape:block md:block w-[1px] h-5 bg-[#DFD8CE]" />
 
       {/* 2. 手机摇晃程度 */}
-      <div className="flex items-center gap-2 md:gap-4 relative group h-12 w-36 md:w-40 lg:w-44 xl:w-48 pointer-events-auto">
+      <div className="flex items-center gap-1.5 md:gap-2.5 relative group h-8.5 landscape:h-8.5 md:h-10 w-32 landscape:w-36 md:w-38 lg:w-42 xl:w-46 pointer-events-auto">
         {/* Rounded Icon Circle */}
-        <div className="w-10 h-10 rounded-full bg-[#E5DDD2]/70 flex items-center justify-center text-[#5A5043] flex-shrink-0 transition-colors group-hover:bg-[#DACFBE]">
-          <Smartphone size={16} />
+        <div className="w-7 h-7 landscape:w-8.5 landscape:h-8.5 md:w-8.5 md:h-8.5 rounded-full bg-[#E5DDD2]/70 flex items-center justify-center text-[#5A5043] flex-shrink-0 transition-colors group-hover:bg-[#DACFBE]">
+          <Smartphone size={13} />
         </div>
-        
+         
         {/* Info Column containing sliders */}
         <div className="flex-1 flex flex-col justify-center relative min-w-0">
-          <div className="flex justify-between items-baseline mb-1.5 text-xs text-[#5A5043]">
-            <span className="opacity-85 font-serif font-medium tracking-[0.08em]">{isZh ? '手机摇晃程度' : 'Phone Shake'}</span>
-            <span className="font-serif font-semibold tracking-[0.04em] text-xs text-[#BF4F73]">{getShakingLabel()}</span>
+          <div className="flex justify-between items-baseline mb-0.5 text-[10px] md:text-xs text-[#5A5043]">
+            <span className="opacity-85 font-serif font-medium tracking-[0.08em] truncate">{isZh ? '摆动' : 'Shake'}</span>
+            <span className="font-serif font-semibold tracking-[0.04em] text-[10px] md:text-xs text-[#BF4F73]">{getShakingLabel()}</span>
           </div>
           
           {/* Custom Visual Range Track Line */}
@@ -134,18 +134,18 @@ export const StatsBar: React.FC<StatsBarProps> = ({
       </div>
 
       {/* Divider */}
-      <div className="hidden md:block w-[1px] h-6 bg-[#DFD8CE]" />
+      <div className="hidden landscape:block md:block w-[1px] h-5 bg-[#DFD8CE]" />
 
       {/* 3. 点击屏幕频率 */}
-      <div className="flex items-center gap-2 md:gap-4 relative group h-12 w-36 md:w-40 lg:w-44 xl:w-48 pointer-events-auto">
-        <div className="w-10 h-10 rounded-full bg-[#E5DDD2]/70 flex items-center justify-center text-[#5A5043] flex-shrink-0 transition-colors group-hover:bg-[#DACFBE]">
-          <Fingerprint size={16} />
+      <div className="flex items-center gap-1.5 md:gap-2.5 relative group h-8.5 landscape:h-8.5 md:h-10 w-32 landscape:w-36 md:w-38 lg:w-42 xl:w-46 pointer-events-auto">
+        <div className="w-7 h-7 landscape:w-8.5 landscape:h-8.5 md:w-8.5 md:h-8.5 rounded-full bg-[#E5DDD2]/70 flex items-center justify-center text-[#5A5043] flex-shrink-0 transition-colors group-hover:bg-[#DACFBE]">
+          <Fingerprint size={13} />
         </div>
-        
+         
         <div className="flex-1 flex flex-col justify-center relative min-w-0">
-          <div className="flex justify-between items-baseline mb-1.5 text-xs text-[#5A5043]">
-            <span className="opacity-85 font-serif font-medium tracking-[0.08em]">{isZh ? '点击屏幕频率' : 'Click Frequency'}</span>
-            <span className="font-serif font-semibold tracking-[0.04em] text-xs text-[#BF4F73]">{getClicksLabel()}</span>
+          <div className="flex justify-between items-baseline mb-0.5 text-[10px] md:text-xs text-[#5A5043]">
+            <span className="opacity-85 font-serif font-medium tracking-[0.08em] truncate">{isZh ? '点击' : 'Taps'}</span>
+            <span className="font-serif font-semibold tracking-[0.04em] text-[10px] md:text-xs text-[#BF4F73]">{getClicksLabel()}</span>
           </div>
           
           <div className="w-full h-[2px] bg-[#E2D6C6] rounded-full relative overflow-hidden">

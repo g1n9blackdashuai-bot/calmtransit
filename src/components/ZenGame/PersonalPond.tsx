@@ -11,6 +11,7 @@ interface PersonalPondProps {
   onStartMic: () => void;
   language?: 'zh' | 'en';
   onPopupActiveChange?: (active: boolean) => void;
+  dragX?: any;
 }
 
 interface RippleGroupProps {
@@ -277,8 +278,12 @@ export const PersonalPond: React.FC<PersonalPondProps> = ({
   isMicActive, 
   onStartMic,
   language = 'zh',
-  onPopupActiveChange
+  onPopupActiveChange,
+  dragX
 }) => {
+  const activeDragX = dragX || useMotionValue(0);
+  const swipeHintOpacity = useTransform(activeDragX, [-100, 0, 100], [0, 0.45, 0]);
+
   const openRatio = Math.min(1, Math.max(0, 1 - (noise - 70) / 40));
 
   // clickIntensity ranges from 0 to 100 based on tap speed and frequency
@@ -404,42 +409,6 @@ export const PersonalPond: React.FC<PersonalPondProps> = ({
     >
       {/* Soft elegant vignette layer */}
       <div className="absolute inset-0 bg-gradient-to-b from-white/20 via-transparent to-[#F2EAE3]/30 pointer-events-none z-[1]" />
-      
-       {/* Exquisite Microphone sound activation badge and real-time dB meter */}
-      <div className="absolute top-4 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center">
-         {!isMicActive ? (
-            <motion.button
-              whileHover={{ scale: 1.03, backgroundColor: '#F2EAE3' }}
-              whileTap={{ scale: 0.97 }}
-              onClick={(e) => {
-                 e.stopPropagation();
-                 sounds.playTap();
-                 onStartMic();
-              }}
-              className="px-8 py-3 bg-[#FAF6F0] border border-[#BFB4A6]/40 text-[#5A5043] rounded-full text-xs font-serif font-semibold tracking-[0.25em] flex items-center gap-2.5 transition-all cursor-pointer select-none"
-            >
-              <span className="text-sm">🎤</span> {language === 'zh' ? '开启声音互动' : 'Enable Voice Interaction'}
-            </motion.button>
-         ) : (
-            <motion.div 
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              className="px-8 py-3 bg-[#F2EAE3] border border-[#BFB4A6]/50 rounded-full flex items-center gap-5 text-xs font-serif text-[#4B4339] select-none tracking-[0.1em]"
-            >
-              <div className="flex items-center gap-2">
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#BF4F73] opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-[#BF4F73]"></span>
-                </span>
-                <span className="tracking-[0.15em] font-semibold text-[#4B4339]">{language === 'zh' ? '互动已开启' : 'Interaction Enabled'}</span>
-              </div>
-              <div className="w-[1px] h-3.5 bg-[#BFB4A6]/40" />
-              <span className="tracking-[0.15em] font-serif text-[#4B4339]">
-                {language === 'zh' ? '当前环境音' : 'Ambient Sound'}: <span className="font-sans font-bold text-[0.88rem] tracking-[0.02em] text-[#BF4F73]">{noise}</span> dB
-              </span>
-            </motion.div>
-         )}
-      </div>
 
       {/* Horizon-Line Organic Wave Ripples */}
       <div className="absolute bottom-1/4 w-[300%] h-64 opacity-15 pointer-events-none z-10">
@@ -460,19 +429,20 @@ export const PersonalPond: React.FC<PersonalPondProps> = ({
       </div>
 
       {/* Main interactive Lotus bundle with floating and shaking combinations */}
-      <motion.div
-        className="relative z-20 flex flex-col items-center select-none translate-y-[90px]"
-        animate={{ 
-          x: [ -offsetX, offsetX, -offsetX * 0.5, offsetX * 0.5, 0 ],
-          y: [ offsetY, -offsetY * 0.5, 0 ],
-          scale: 0.92 + openRatio * 0.08
-        }}
-        transition={{ 
-          x: shakingLevel !== 'low' ? { repeat: Infinity, duration: 2.0, ease: "easeInOut" } : { duration: 2.0 },
-          y: shakingLevel !== 'low' ? { repeat: Infinity, duration: 2.0, ease: "easeInOut" } : { duration: 2.0, ease: "easeInOut" },
-          scale: { duration: 2.0, ease: "easeInOut" }
-        }}
-      >
+      <div className="lotus-position-wrapper relative z-20 flex flex-col items-center select-none translate-y-[90px]">
+        <motion.div
+          className="lotus-dynamic-container flex flex-col items-center"
+          animate={{ 
+            x: [ -offsetX, offsetX, -offsetX * 0.5, offsetX * 0.5, 0 ],
+            y: [ offsetY, -offsetY * 0.5, 0 ],
+            scale: 0.92 + openRatio * 0.08
+          }}
+          transition={{ 
+            x: shakingLevel !== 'low' ? { repeat: Infinity, duration: 2.0, ease: "easeInOut" } : { duration: 2.0 },
+            y: shakingLevel !== 'low' ? { repeat: Infinity, duration: 2.0, ease: "easeInOut" } : { duration: 2.0, ease: "easeInOut" },
+            scale: { duration: 2.0, ease: "easeInOut" }
+          }}
+        >
         {/* CLICK FREQUENCY TRIGGERED MULTI-LAYER COLORED DYNAMIC RIPPLES */}
         {/* Placed behind the lotus (low z-index inside the bundle) */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-[1]" style={{ perspective: "800px", transformStyle: "preserve-3d" }}>
@@ -520,8 +490,17 @@ export const PersonalPond: React.FC<PersonalPondProps> = ({
           <InteractiveLotus noise={noise} clicks={clicks} glowOpacityMultiplier={1.0 - (clickIntensity / 100) * 0.6} />
         </motion.div>
 
-
       </motion.div>
+
+      {/* Swipe hint text vertically aligned directly under the lotus image, only inside PersonalPond */}
+      <motion.div 
+        style={{ opacity: swipeHintOpacity }}
+        className="swipe-hint mt-6 md:mt-8 text-[#8C7A66]/65 font-serif italic text-[11px] sm:text-xs tracking-[0.25em] text-center select-none pointer-events-none transition-all duration-300"
+      >
+        {language === 'zh' ? '← 左右滑动切换莲池 →' : '← Swipe horizontally to switch ponds →'}
+      </motion.div>
+
+      </div>
 
       {/* Elegant Solid Beige Quiet Alert Overlay Popup (NO transparent blur or glassmorphism) */}
       <AnimatePresence>
@@ -544,7 +523,7 @@ export const PersonalPond: React.FC<PersonalPondProps> = ({
                 scale: { duration: 1.2, ease: "easeInOut" }
               }
             }}
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[150] px-12 py-10 bg-[#F0EAE3]/85 backdrop-blur-md rounded-[32px] shadow-none text-center flex flex-col items-center w-[350px] pointer-events-auto select-none"
+            className="personal-pond-popup absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[150] px-12 py-10 bg-[#F0EAE3]/85 backdrop-blur-md rounded-[32px] shadow-none text-center flex flex-col items-center w-[350px] pointer-events-auto select-none"
             onClick={(e) => e.stopPropagation()}
           >
             <h3 className="text-lg font-serif text-[#4B4339] tracking-[0.18em] mb-3 font-medium">

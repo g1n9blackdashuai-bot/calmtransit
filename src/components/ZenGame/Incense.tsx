@@ -7,8 +7,8 @@ interface IncenseProps {
 
 export const Incense: React.FC<IncenseProps> = ({ progress }) => {
   return (
-    <div className="flex flex-col items-center gap-4">
-      <div className="relative w-[5px] h-[360px] flex flex-col items-center bg-[#E5DDD2]/40 rounded-full">
+    <div className="flex flex-col items-center gap-2 md:gap-4">
+      <div className="incense-inner-stick relative w-[5px] h-[140px] md:h-[360px] flex flex-col items-center bg-[#E5DDD2]/40 rounded-full">
         {/* The burned part (ash/ghostly path) */}
         <motion.div 
           className="w-full bg-[#CEC5BB]/40 rounded-t-full"

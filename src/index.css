@@ -180,3 +180,461 @@
 .ripple:nth-child(6) {
   animation-delay: 10s;
 }
+
+.loading-ripple-circle-1,
+.loading-ripple-circle-2 {
+  width: 12rem;
+  height: 12rem;
+}
+
+/* ==========================================
+   Mobile Landscape Adaptations (height < 560px)
+   ========================================== */
+@media (orientation: landscape) and (max-height: 560px) {
+  /* --- Global or Layout Sizing --- */
+  .playing-header {
+    padding-top: 0.5rem !important;
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
+    margin-bottom: 0.25rem !important;
+  }
+  
+  .playing-header .logo-font {
+    scale: 0.8 !important;
+    transform-origin: left center !important;
+  }
+
+  .header-tabs-container {
+    scale: 0.8 !important;
+    gap: 0.75rem !important;
+    transform-origin: top center !important;
+  }
+  
+  /* Sidebar containing incense */
+  .playing-sidebar {
+    left: 0.35rem !important;
+    width: 140px !important;
+    height: auto !important;
+    margin-left: 0 !important;
+    margin-top: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin-right: 0 !important;
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+    gap: 0.35rem !important;
+    transform: translateY(-28%) !important;
+  }
+  
+  .playing-sidebar .pl-4 {
+    padding-left: 0px !important;
+  }
+
+   .playing-sidebar .incense-inner-stick {
+    height: 145px !important;
+    width: 4px !important;
+  }
+
+  .playing-sidebar .sidebar-remain-time {
+    width: auto !important;
+    white-space: nowrap !important;
+    padding-left: 0px !important;
+  }
+
+  .playing-sidebar .sidebar-est-arrival {
+    width: auto !important;
+    white-space: nowrap !important;
+    padding-left: 0px !important;
+  }
+  
+  .playing-sidebar .text-left {
+    scale: 0.72 !important;
+    transform-origin: top center !important;
+    margin-top: 0px !important;
+    text-align: center !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+  
+  /* Footer of game */
+  .playing-footer {
+    padding-bottom: 0.5rem !important;
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
+  }
+  
+  /* Personal Pond & Public Pond */
+  .mic-activation-badge {
+    top: 0.5rem !important;
+    transform: translateX(-50%) scale(0.8) !important;
+  }
+  
+  .lotus-position-wrapper {
+    transform: translate(0px, -175px) scale(0.55) !important;
+  }
+  
+  /* Stats bar elements */
+  .stats-bar-wrapper {
+    scale: 0.8 !important;
+    transform-origin: bottom center !important;
+    margin-bottom: 2px !important;
+  }
+
+  .stats-bar-container {
+    position: absolute !important;
+    bottom: 1.8rem !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    z-index: 40 !important;
+  }
+
+  .personal-points-container {
+    position: absolute !important;
+    bottom: 1.8rem !important;
+    right: 2rem !important;
+    scale: 0.8 !important;
+    transform-origin: bottom right !important;
+    z-index: 40 !important;
+  }
+  
+  /* Setup Screen Adapts */
+  .setup-screen {
+    padding: 1rem !important;
+  }
+  
+  .setup-screen .absolute.top-8.left-16 {
+    top: 1rem !important;
+    left: 2rem !important;
+    scale: 0.8 !important;
+    transform-origin: top left;
+  }
+  
+  .setup-card {
+    width: 320px !important;
+    padding: 1rem 1.5rem !important;
+    border-radius: 1.25rem !important;
+    box-shadow: 0 10px 30px -15px rgba(140,122,102,0.15) !important;
+  }
+  
+  .setup-card .input-center-logo {
+    height: 32px !important;
+  }
+  
+  .setup-card div.mb-8 {
+    margin-bottom: 0.5rem !important;
+    padding: 0.25rem !important;
+  }
+  
+  .setup-card h2 {
+    font-size: 1.05rem !important;
+    margin-bottom: 0.75rem !important;
+  }
+  
+  .setup-card .w-full.relative.mb-10 {
+    margin-bottom: 0.75rem !important;
+  }
+  
+  .setup-card input {
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+    font-size: 12px !important;
+  }
+  
+  .setup-card button {
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+    font-size: 11px !important;
+  }
+  
+  .setup-card p {
+    margin-top: 0.5rem !important;
+    font-size: 9px !important;
+    line-height: 1.4 !important;
+  }
+  
+  /* Loading Screen Adapts */
+  .loading-screen .relative.flex {
+    margin-bottom: 4.5rem !important;
+    margin-top: 1.5rem !important;
+  }
+  
+  .loading-screen .w-32.h-32 {
+    width: 4rem !important;
+    height: 4rem !important;
+  }
+
+  .loading-screen .loading-ripple-circle-1,
+  .loading-screen .loading-ripple-circle-2 {
+    width: 6.5rem !important;
+    height: 6.5rem !important;
+  }
+  
+  .loading-screen .loading-logo {
+    height: 38px !important;
+  }
+  
+  .loading-screen p {
+    font-size: 11px !important;
+    letter-spacing: 0.3em !important;
+    line-height: 1.6 !important;
+  }
+  
+  /* Finished Screen Adapts */
+  .finished-screen {
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+  }
+  
+  .finished-screen .flex-1.flex {
+    margin-top: 0.25rem !important;
+    margin-bottom: 0.25rem !important;
+    gap: 0.5rem !important;
+  }
+  
+  .finished-screen .space-y-8 > :not([hidden]) ~ :not([hidden]) {
+    --tw-space-y-reverse: 0;
+    margin-top:calc(0.5rem * calc(1 - var(--tw-space-y-reverse))) !important;
+    margin-bottom:calc(0.5rem * var(--tw-space-y-reverse)) !important;
+  }
+  
+  .finished-screen .space-y-3 h2 {
+    font-size: 1.25rem !important;
+    margin-bottom: 0.25rem !important;
+    line-height: 1.2 !important;
+  }
+  
+  .finished-screen .space-y-3 p {
+    font-size: 10px !important;
+    line-height: 1.2 !important;
+  }
+  
+  .finished-screen .muyu-interaction-container {
+    width: 9.5rem !important;
+    height: 3.5rem !important;
+    border-radius: 1.75rem !important;
+  }
+  
+  .finished-screen .muyu-interaction-container svg {
+    scale: 0.72 !important;
+  }
+  
+  .finished-screen .grid {
+    gap: 0.25rem !important;
+    max-width: 580px !important;
+  }
+  
+  .finished-screen .grid > div {
+    padding-top: 0.2rem !important;
+    padding-bottom: 0.2rem !important;
+    border-radius: 0.375rem !important;
+  }
+  
+  .finished-screen .grid img {
+    width: 1.125rem !important;
+    height: 1.125rem !important;
+  }
+  
+  .finished-screen .grid span {
+    font-size: 8.5px !important;
+  }
+  
+  .finished-screen .grid .text-bold {
+    font-size: 12px !important;
+  }
+  
+  .finished-screen .flex-col.items-center.space-y-1 {
+    scale: 0.85 !important;
+    transform-origin: center;
+  }
+  
+  .finished-screen .flex-col.items-center.space-y-1.5 {
+    scale: 0.85 !important;
+    transform-origin: center;
+    margin-top: 0px !important;
+  }
+  
+  /* Tutorial Modal Adapts */
+  .tutorial-modal-overlay {
+    flex-direction: row !important;
+  }
+  
+  .tutorial-left-col {
+    padding: 1.5rem !important;
+  }
+  
+  .tutorial-left-col .tutorial-incense-container {
+    height: 150px !important;
+  }
+  
+  .tutorial-left-col .tutorial-incense-meta {
+    margin-top: 1.5rem !important;
+  }
+  
+  .tutorial-left-col .tutorial-lotus-image {
+    width: 8rem !important;
+    height: 8rem !important;
+  }
+  
+  .tutorial-left-col .tutorial-preview-stage-2 .relative.w-48.h-48 {
+    width: 8rem !important;
+    height: 8rem !important;
+  }
+  
+  .tutorial-left-col .tutorial-preview-stage-2 {
+    gap: 1.5rem !important;
+  }
+  
+  .tutorial-left-col .tutorial-preview-stage-2 .w-full.max-w-xs {
+    max-width: 13rem !important;
+    font-size: 10px !important;
+  }
+  
+  .tutorial-left-col .tutorial-preview-stage-2 .max-w-xs {
+    --tw-space-y-reverse: 0;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+  }
+  
+  .tutorial-left-col .tutorial-preview-stage-2 .space-y-6 > :not([hidden]) ~ :not([hidden]) {
+    margin-top: calc(0.5rem * calc(1 - var(--tw-space-y-reverse))) !important;
+  }
+  
+  .tutorial-left-col .tutorial-preview-red-packet {
+    scale: 0.75 !important;
+    transform-origin: center;
+  }
+  
+  .tutorial-left-col .tutorial-lotus {
+    width: 7rem !important;
+    height: 9rem !important;
+  }
+  
+  .tutorial-right-col {
+    padding: 2.5rem !important;
+    justify-content: space-between !important;
+  }
+  
+  .tutorial-right-header-and-content {
+    --tw-space-y-reverse: 0;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+  }
+  
+  .tutorial-right-header-and-content.space-y-32 {
+    margin-top: 0px !important;
+  }
+  
+  .tutorial-right-header-and-content > :not([hidden]) ~ :not([hidden]) {
+    margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse))) !important;
+  }
+  
+  .tutorial-right-header-and-content h3 {
+    font-size: 1.125rem !important;
+    line-height: 1.4 !important;
+  }
+  
+  .tutorial-right-header-and-content p {
+    font-size: 10px !important;
+    line-height: 1.5 !important;
+  }
+  
+  .tutorial-right-col .tutorial-footer-actions {
+    margin-top: 1rem !important;
+  }
+  
+  /* Public Pond & Personal Pond adaptations on mobile landscape */
+  .fixed-controls-container {
+    top: 0.5rem !important;
+    right: 1.5rem !important;
+    gap: 0.5rem !important;
+  }
+  
+  .fixed-controls-container button {
+    padding-top: 0.25rem !important;
+    padding-bottom: 0.25rem !important;
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important;
+    font-size: 9px !important;
+    scale: 0.9 !important;
+    transform-origin: top right !important;
+  }
+
+  /* Personal Pond Popup (Inner Peace Modal) */
+  .personal-pond-popup {
+    scale: 0.75 !important;
+    padding-top: 1.25rem !important;
+    padding-bottom: 1.25rem !important;
+    padding-left: 1.75rem !important;
+    padding-right: 1.75rem !important;
+    border-radius: 1.5rem !important;
+    width: 310px !important;
+    transform-origin: center center !important;
+  }
+
+  .personal-pond-popup h3 {
+    font-size: 14px !important;
+    margin-bottom: 0.25rem !important;
+  }
+
+  .personal-pond-popup p {
+    font-size: 11px !important;
+    line-height: 1.4 !important;
+  }
+
+  /* Public Pond Popover sizing on mobile landscape */
+  .public-pond-popover {
+    bottom: 5.5rem !important;
+    scale: 0.76 !important;
+    transform-origin: bottom center !important;
+  }
+
+  .public-pond-popover > div {
+    padding: 1rem 1.5rem !important;
+    border-radius: 1.25rem !important;
+  }
+
+  .public-pond-popover h3 {
+    font-size: 12px !important;
+  }
+
+  .public-pond-popover p {
+    font-size: 11px !important;
+    margin-top: 0.25rem !important;
+    margin-bottom: 0.25rem !important;
+  }
+
+  .public-pond-footer {
+    bottom: 4.8rem !important;
+    scale: 0.8 !important;
+  }
+}
+
+/* ==========================================
+   General Styles for Center HUD
+   ========================================== */
+.lotus-position-wrapper {
+  transform: translateY(-20px) scale(0.92);
+  transition: transform 0.4s ease;
+}
+
+.stats-bar-container {
+  position: absolute;
+  bottom: 3.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 40;
+}
+
+.personal-points-container {
+  position: absolute;
+  bottom: 3.5rem;
+  right: 4rem;
+  z-index: 40;
+}

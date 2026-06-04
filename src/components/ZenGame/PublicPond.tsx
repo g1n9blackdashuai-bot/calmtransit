@@ -414,7 +414,7 @@ export const PublicPond: React.FC<PublicPondProps> = ({
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 15, scale: 0.95 }}
             transition={{ duration: 0.32, ease: [0.19, 1, 0.22, 1] }}
-            className="absolute bottom-28 left-1/2 -translate-x-1/2 z-[100] w-[340px] pointer-events-none select-none"
+            className="public-pond-popover absolute bottom-28 left-1/2 -translate-x-1/2 z-[100] w-[340px] pointer-events-none select-none"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Elegant Solid Beige Quiet Popover (Matching overall container design) */}
@@ -459,7 +459,7 @@ export const PublicPond: React.FC<PublicPondProps> = ({
       </AnimatePresence>
 
       {/* 5. Delicate Bottom Decorative Title */}
-      <div className="absolute inset-x-0 bottom-24 flex justify-center pointer-events-none z-10 select-none">
+      <div className="public-pond-footer absolute inset-x-0 bottom-24 flex justify-center pointer-events-none z-10 select-none">
         <span className="text-zen-brown text-[11px] tracking-[0.8em] font-serif opacity-35 italic">
           {isZh ? '十里荷塘 · 众生共修' : 'Quiet Pond · Sharing One Joy'}
         </span>
