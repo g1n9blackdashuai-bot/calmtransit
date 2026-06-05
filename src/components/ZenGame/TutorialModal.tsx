@@ -25,48 +25,48 @@ const getSteps = (language: "zh" | "en") => {
   const isZh = language === "zh";
   return [
     {
-      title: isZh ? "线香代表旅程进度" : "Incense Tracks Journey Progress",
+      title: isZh ? "线香代表旅程进度" : "Incense Tracks Progress",
       desc: isZh
         ? "线香会随着通勤站点推进慢慢燃烧，到站时燃尽。"
-        : "The incense stick burns slowly down as your commute advances through stations, burning out fully upon arrival.",
+        : "The incense stick burns slowly down as your commute advances, burning out fully upon arrival.",
       stepNum: "1 / 4",
     },
     {
-      title: isZh ? "状态栏显示当前状态" : "Status Bar Shows Real-time States",
+      title: isZh ? "状态栏显示当前状态" : "Real-time Status Bar",
       desc: isZh
         ? "噪音、点击次数和手机摇晃程度会影响莲花与水面的变化。在这个数字空间里，您的动作与环境共生，每一次呼吸与点击都将在池塘中留下轻柔的痕迹。"
-        : "Ambient noise, screen clicks, and device shaking determine the serenity of your lotus pond. In this digital space, your presence coexists with the pond; every subtle movement leaves a gentle trace.",
+        : "Ambient noise, screen clicks, and device shaking determine the peace of your lotus pond. Every subtle movement leaves a gentle trace on the water.",
       stepNum: "2 / 4",
       substeps: [
         {
-          title: isZh ? "噪音分贝感应" : "Noise Decibel Sensing",
+          title: isZh ? "噪音分贝感应" : "Noise Sensing",
           desc: isZh
             ? "实时采集车厢内的环境噪音。分贝越高，水面波纹越剧烈，底部的涟漪也会由慢变快。保持环境安静能让莲花进入更平和的生长状态。"
-            : "Real-time sensing of cabin noise. Greater decibels cause heavier waves in your pond. Keeping a peaceful environment allows your lotus flower to grow in deep calm.",
+            : "Real-time sensing of cabin noise. Higher decibels cause heavier waves in your pond. Keep it quiet to help the lotus grow.",
         },
         {
-          title: isZh ? "点击屏幕频率" : "Screen Click Frequency",
+          title: isZh ? "点击屏幕频率" : "Click Frequency",
           desc: isZh
             ? "记录您点击屏幕的频率。过于频繁的交互会干扰池塘的宁静，让水面产生紊乱的碎波。克制交互次数，感受莲池缓慢舒展的律动。"
-            : "Tracks the frequency of your screen clicks. Rapid clicking disrupts the pond's tranquility, generating choppy waves. Exercise restraint and savor the slow flow.",
+            : "Tracks your screen click frequency. Over-frequent clicks disturb the tranquility, causing choppy waves. Restrain clicks to feel the calm.",
         },
         {
-          title: isZh ? "手机摇晃程度" : "Phone Shaking Level",
+          title: isZh ? "手机摇晃程度" : "Shaking Level",
           desc: isZh
             ? "感应手机的晃动与倾斜。车辆行驶的颠簸或您的大幅动作都会引起视觉上的起伏。需要身心合一的稳定，才能让莲花保持中心不偏不倚。"
-            : "Measures phone shaking and tilting. Commute vibrations or large movements disturb the visuals. Focus on body-mind stability to keep the lotus centered.",
+            : "Measures phone shaking and tilting. Commute vibrations or large movements disturb the visuals. Keep steady to center the lotus.",
         },
       ],
     },
     {
-      title: isZh ? "保持平静获得积分" : "Earn Points Through Serenity",
+      title: isZh ? "保持平静获得积分" : "Earn Merit Points",
       desc: isZh
         ? "旅程中保持安静和稳定，可获得积分并兑换乘车优惠。"
-        : "Staying quiet and steady during transit rewards you with merit points to redeem for real-world commute discount vouchers.",
+        : "Staying quiet and steady during transit rewards you with merit points to redeem for fare discount coupons.",
       stepNum: "3 / 4",
     },
     {
-      title: isZh ? "让莲池保持清明" : "Let the Floating Pond Bloom",
+      title: isZh ? "让莲池保持清明" : "Let the Lotus Pond Bloom",
       desc: isZh
         ? "跟随音乐放松，减少噪音、点击和摇晃，让莲花盛开，水面平静。"
         : "Breathe with the ambient music; minimize noise, clicking, and shaking to let the sacred lotus fully open.",
@@ -360,12 +360,12 @@ export const TutorialModal: React.FC<TutorialModalProps> = ({
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
       >
-        <div className="tutorial-left-col flex-[1.2] bg-[#E8E2D6] relative overflow-hidden flex items-center justify-center p-4 sm:p-8 md:p-12">
+        <div className="tutorial-left-col flex-[1.1] md:flex-[1.2] bg-[#E8E2D6] relative overflow-hidden flex items-center justify-center p-4 landscape:p-4 sm:p-8 md:p-12">
           <motion.div
             key={currentStep}
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            className="w-full h-full"
+            className="w-full h-full flex items-center justify-center"
           >
             <PreviewContent
               step={currentStep}
@@ -378,8 +378,8 @@ export const TutorialModal: React.FC<TutorialModalProps> = ({
           </motion.div>
         </div>
 
-        <div className="tutorial-right-col flex-1 bg-[#F2EAE3] flex flex-col p-6 sm:p-12 md:p-16 lg:p-20 xl:p-24 justify-between relative overflow-y-auto">
-          <div className="tutorial-right-header-and-content space-y-8 sm:space-y-12 md:space-y-20 lg:space-y-32">
+        <div className="tutorial-right-col flex-1 bg-[#F2EAE3] flex flex-col p-5 landscape:p-6 landscape:md:p-8 sm:p-12 md:p-16 lg:p-20 xl:p-24 justify-between relative overflow-y-auto">
+          <div className="tutorial-right-header-and-content space-y-6 landscape:space-y-4 landscape:md:space-y-8 sm:space-y-12 md:space-y-20 lg:space-y-32">
             <div className="flex items-center gap-3">
               <img
                 src={tutorialHeaderLogo}
@@ -395,7 +395,7 @@ export const TutorialModal: React.FC<TutorialModalProps> = ({
 
             <motion.div
               key={`${currentStep}-${activeSubTab}`}
-              className="space-y-4 sm:space-y-6 md:space-y-8"
+              className="space-y-3 landscape:space-y-2.5 sm:space-y-6 md:space-y-8"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
             >
@@ -411,18 +411,18 @@ export const TutorialModal: React.FC<TutorialModalProps> = ({
                 {steps[currentStep].stepNum}
               </div>
 
-              <div className="space-y-3 sm:space-y-4 md:space-y-6">
-                <h3 className="text-base sm:text-xl md:text-2xl font-serif text-[#4B463E] font-medium tracking-[0.1em] sm:tracking-[0.16em] leading-snug sm:leading-[1.6]">
+              <div className="space-y-2.5 landscape:space-y-2 sm:space-y-4 md:space-y-6">
+                <h3 className="text-sm landscape:text-base sm:text-xl md:text-2xl font-serif text-[#4B463E] font-medium tracking-[0.1em] sm:tracking-[0.16em] leading-snug sm:leading-[1.6]">
                   {currentTitle}
                 </h3>
-                <p className="text-[10px] sm:text-xs text-[#4B463E] leading-normal sm:leading-[1.8] tracking-wider sm:tracking-[0.12em] max-w-xs sm:max-w-sm font-serif opacity-75">
+                <p className="text-[9.5px] landscape:text-[10px] sm:text-xs text-[#4B463E] leading-normal sm:leading-[1.8] tracking-wider sm:tracking-[0.12em] max-w-xs sm:max-w-sm font-serif opacity-75">
                   {currentDesc}
                 </p>
               </div>
             </motion.div>
           </div>
 
-          <div className="tutorial-footer-actions mt-8 md:mt-0 flex justify-between items-center text-[9px] sm:text-[10px] tracking-[0.2em] sm:tracking-[0.3em] text-[#4B463E] font-serif uppercase">
+          <div className="tutorial-footer-actions mt-6 landscape:mt-4 md:mt-0 flex justify-between items-center text-[9px] sm:text-[10px] tracking-[0.2em] sm:tracking-[0.3em] text-[#4B463E] font-serif uppercase">
             <button
               onClick={() => {
                 sounds.playTap();

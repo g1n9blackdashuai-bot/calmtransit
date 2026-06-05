@@ -441,12 +441,12 @@ export const PublicPond: React.FC<PublicPondProps> = ({
 
               {/* Footer status information */}
               <div className="flex items-center justify-between text-[10px] text-[#8C7A66] font-serif tracking-[0.15em] pt-2.5 border-t border-[#CEC5BA]/25 mt-1">
-                <span className="font-sans font-medium">
+                <span className="font-sans font-medium whitespace-nowrap">
                   {isZh ? `已宁游 ` : `Traveling `}
                   <span className="font-sans font-bold">{selectedUser.durationMin}</span>
                   {isZh ? ` 分钟` : ` mins`}
                 </span>
-                <span className="opacity-80 font-medium text-[9px]">
+                <span className="opacity-80 font-medium text-[9px] whitespace-nowrap">
                   {selectedUser.brightness < 0.8 
                     ? (isZh ? '有微幅跌宕' : 'Wavering') 
                     : (isZh ? '心平气和' : 'Calm State')}

@@ -41,16 +41,16 @@ const CARD_EVALUATIONS = {
     redeemSuccess: '500 积分已成功兑换 0.5 元乘车优惠券'
   },
   en: {
-    noiseTitle: 'Silence (Noise)',
+    noiseTitle: 'Silence',
     noiseValueGood: 'Quiet & Calm',
-    noiseValueBad: 'Slightly Noisy',
-    clickTitle: 'Focus (Taps)',
+    noiseValueBad: 'Noisy',
+    clickTitle: 'Focus',
     clickValueGood: 'One-Pointed',
-    clickValueBad: 'Restless Taps',
-    shakeTitle: 'Stability (Shake)',
+    clickValueBad: 'Restless',
+    shakeTitle: 'Stability',
     shakeValueGood: 'Rock-Steady',
-    shakeValueBad: 'Slightly Shaky',
-    redeemSuccess: '500 points successfully redeemed for 0.5 RMB rail coupon'
+    shakeValueBad: 'Unsteady',
+    redeemSuccess: '500 points redeemed for 0.5 RMB coupon'
   }
 };
 
@@ -89,21 +89,21 @@ const TRANSLATIONS = {
   },
   en: {
     title: '宁行 CalmTransit',
-    inputTitle: 'Please enter your destination',
-    inputPlaceholder: 'Enter your destination...',
+    inputTitle: 'Enter your destination',
+    inputPlaceholder: 'Enter destination...',
     btnStart: 'Start Calm Transit',
-    inputNote: 'Step into a moment of calm and find your lotus pond during transit',
+    inputNote: 'Step into a moment of calm & find your lotus pond during transit',
     loading: 'Beginning your calm journey...',
     personal: 'Personal Pond',
     public: 'Public Pond',
-    warning: 'Stay mindful, do not lose your peace.',
+    warning: 'Stay mindful, keep your peace.',
     destination: 'Destination',
-    merit: 'Total Journey Merit',
+    merit: 'Total Merit',
     redeemTitle: 'Redeem Merit',
-    redeemNote: 'Accumulated merit can offset fare',
+    redeemNote: 'Use points to offset transit fare',
     redeemRateTitle: 'Rate',
-    redeemRate: '500 pt = 0.5 USD',
-    redeemBtn: 'Redeem Reward',
+    redeemRate: '500 pt = 0.5 RMB',
+    redeemBtn: 'Redeem Coupon',
     aboutTitle: 'Meditation Guide',
     about1: 'Silence: Keep the cabin quiet. If silence is attained, the pond stays clear.',
     about2: 'Restraint: Curb the urge to click. Still fingers lead to a clear mind.',
@@ -114,7 +114,7 @@ const TRANSLATIONS = {
     resultWord: 'Serenity',
     reset: 'Enter the Pond Again',
     meritSymbol: 'Merit',
-    swipeHint: 'Swipe horizontally to switch ponds'
+    swipeHint: 'Swipe to change ponds'
   }
 };
 
@@ -643,16 +643,16 @@ export default function App() {
                   
                   {/* Station arrival metadata at the bottom left */}
                   <div className="text-left space-y-1 font-serif text-[#4B4339]">
-                    <div className="flex items-center gap-1.5 text-sm font-medium tracking-wide">
+                    <div className="flex items-center gap-1.5 text-sm font-medium tracking-wide whitespace-nowrap">
                         <MapPin size={13} className="text-[#8C7A66] opacity-80" /> 
-                        <span>{destination || (language === 'zh' ? '国贸站' : 'Guomao Station')}</span>
+                        <span className="truncate max-w-[130px] inline-block">{destination || (language === 'zh' ? '国贸站' : 'Guomao Station')}</span>
                     </div>
-                    <div className="text-[11px] tracking-wide font-sans pl-5 text-[#8C7A66]/90 sidebar-est-arrival">
+                    <div className="text-[11px] tracking-wide font-sans pl-5 text-[#8C7A66]/90 sidebar-est-arrival whitespace-nowrap">
                       {language === 'zh' ? '到达时间' : 'Est. Arrival'}{' '}
                       {new Date(Date.now() + timeLeft * 1000).toLocaleTimeString(language === 'zh' ? 'zh-CN' : 'en-US', { hour: '2-digit', minute: '2-digit', hour12: false }).replace(':', ': ')}
                     </div>
-                    <div className="text-[11px] tracking-wide pl-5 text-[#8C7A66]/90 font-serif sidebar-remain-time">
-                      {language === 'zh' ? `旅程还剩${Math.ceil(timeLeft / 60)}分钟` : `Remaining time: ${Math.ceil(timeLeft / 60)} mins`}
+                    <div className="text-[11px] tracking-wide pl-5 text-[#8C7A66]/90 font-serif sidebar-remain-time whitespace-nowrap">
+                      {language === 'zh' ? `旅程还剩${Math.ceil(timeLeft / 60)}分钟` : `${Math.ceil(timeLeft / 60)} mins left`}
                     </div>
                   </div>
                 </div>
@@ -1076,30 +1076,40 @@ export default function App() {
         <AnimatePresence>
           {showInfo && (
             <motion.div 
-              className="fixed inset-0 z-[500] flex items-center justify-center bg-zen-dark/40 backdrop-blur-sm p-6"
+              className="fixed inset-0 z-[500] flex items-center justify-center bg-zen-dark/40 backdrop-blur-sm p-4 sm:p-6"
               initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
             >
-              <div className="bg-[#F2EAE3] w-[500px] p-12 rounded-[28px] relative border border-[#E3D8CE]/50 shadow-2xl">
-                <button onClick={() => {
-                  sounds.playTap();
-                  setShowInfo(false);
-                }} className="absolute right-8 top-8 opacity-35 hover:opacity-100 transition-opacity cursor-pointer"><X size={22}/></button>
-                <h3 className="text-2xl font-serif mb-10 tracking-[0.16em] text-[#4B4339] font-medium border-b border-[#BFB4A6]/25 pb-6 leading-snug">{t.aboutTitle}</h3>
-                <div className="space-y-8 text-[13px] text-[#5D5447] leading-[1.8] tracking-[0.12em] font-serif">
-                   <div className="flex gap-6 items-start">
-                      <span className="text-[#8C7A66] font-semibold font-sans text-sm pt-0.5">01</span>
-                      <p className="font-serif leading-[1.8]">{t.about1}</p>
+              <div className="bg-[#F2EAE3] w-[460px] max-w-[94vw] p-5 landscape:p-5.5 sm:p-10 md:p-12 rounded-[20px] sm:rounded-[28px] relative border border-[#E3D8CE]/50 shadow-2xl max-h-[96vh] overflow-y-auto landscape:overflow-y-visible">
+                <button 
+                  onClick={() => {
+                    sounds.playTap();
+                    setShowInfo(false);
+                  }} 
+                  className="absolute right-4.5 top-4.5 sm:right-8 sm:top-8 opacity-45 hover:opacity-100 transition-opacity cursor-pointer p-0.5"
+                >
+                  <X size={16} className="w-[16px] h-[16px] sm:w-[22px] sm:h-[22px] text-[#4B4339]" />
+                </button>
+                
+                <h3 className="text-sm landscape:text-base sm:text-[22px] md:text-2xl font-serif mb-5 landscape:mb-4 sm:mb-8 md:mb-10 tracking-[0.16em] text-[#4B4339] font-medium border-b border-[#BFB4A6]/25 pb-2 landscape:pb-1.5 sm:pb-5 md:pb-6 leading-none">
+                  {t.aboutTitle}
+                </h3>
+                
+                <div className="space-y-4 landscape:space-y-3 sm:space-y-6 md:space-y-8 text-[11px] landscape:text-[11px] sm:text-[13px] text-[#5D5447] leading-relaxed tracking-[0.12em] font-serif">
+                   <div className="flex gap-3.5 landscape:gap-4 sm:gap-6 items-start">
+                      <span className="text-[#8C7A66] font-semibold font-sans text-[11px] sm:text-sm">01</span>
+                      <p className="font-serif leading-relaxed landscape:leading-normal text-[11px] sm:text-[13px]">{t.about1}</p>
                    </div>
-                   <div className="flex gap-6 items-start">
-                      <span className="text-[#8C7A66] font-semibold font-sans text-sm pt-0.5">02</span>
-                      <p className="font-serif leading-[1.8]">{t.about2}</p>
+                   <div className="flex gap-3.5 landscape:gap-4 sm:gap-6 items-start">
+                      <span className="text-[#8C7A66] font-semibold font-sans text-[11px] sm:text-sm">02</span>
+                      <p className="font-serif leading-relaxed landscape:leading-normal text-[11px] sm:text-[13px]">{t.about2}</p>
                    </div>
-                   <div className="flex gap-6 items-start">
-                      <span className="text-[#8C7A66] font-semibold font-sans text-sm pt-0.5">03</span>
-                      <p className="font-serif leading-[1.8]">{t.about3}</p>
+                   <div className="flex gap-3.5 landscape:gap-4 sm:gap-6 items-start">
+                      <span className="text-[#8C7A66] font-semibold font-sans text-[11px] sm:text-sm">03</span>
+                      <p className="font-serif leading-relaxed landscape:leading-normal text-[11px] sm:text-[13px]">{t.about3}</p>
                    </div>
                 </div>
-                <div className="mt-12 text-[10px] text-[#8C7A66]/50 italic text-center font-sans tracking-[0.2em] uppercase">
+                
+                <div className="mt-6 landscape:mt-4 sm:mt-10 md:mt-12 text-[8.5px] landscape:text-[8px] sm:text-[10px] text-[#8C7A66]/50 italic text-center font-sans tracking-[0.2em] uppercase">
                   {t.title} · Aesthetic of Stillness
                 </div>
               </div>

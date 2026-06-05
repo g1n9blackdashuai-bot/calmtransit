@@ -495,9 +495,9 @@ export const PersonalPond: React.FC<PersonalPondProps> = ({
       {/* Swipe hint text vertically aligned directly under the lotus image, only inside PersonalPond */}
       <motion.div 
         style={{ opacity: swipeHintOpacity }}
-        className="swipe-hint mt-6 md:mt-8 text-[#8C7A66]/65 font-serif italic text-[11px] sm:text-xs tracking-[0.25em] text-center select-none pointer-events-none transition-all duration-300"
+        className="swipe-hint mt-6 md:mt-8 text-[#8C7A66]/65 font-serif italic text-[11px] sm:text-xs tracking-[0.25em] text-center select-none pointer-events-none transition-all duration-300 whitespace-nowrap"
       >
-        {language === 'zh' ? '← 左右滑动切换莲池 →' : '← Swipe horizontally to switch ponds →'}
+        {language === 'zh' ? '← 左右滑动切换莲池 →' : '← Swipe to switch ponds →'}
       </motion.div>
 
       </div>
